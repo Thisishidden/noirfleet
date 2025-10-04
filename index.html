@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noir Fleet — Premium Limo & Transfer Services</title>
+  <meta name="description" content="Noir Fleet - Premium chauffeur driven transfers, airport shuttles, corporate and event transportation." />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23002b45'/%3E%3Ctext x='50' y='57' font-size='48' fill='%23fff' text-anchor='middle' font-family='Arial'%3EL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="logo.jpg" alt="Noir Fleet Logo" class="site-logo">
+      </div>
+
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#fleet">Fleet</a>
+        <a href="#prices">Prices</a>
+        <a href="#contact" class="cta">Book Now</a>
+
+        <span class="contact-info">
+          <a href="tel:+917203070345">+91 72030 70345</a>
+          <a href="mailto:reservations@noirfleet.com">reservations@noirfleet.com</a>
+        </span>
+      </nav>
+      <button class="nav-toggle" aria-label="Open navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Banner image section -->
+    <section class="hero"></section>
+
+    <!-- Text content moved below banner -->
+    <section class="intro">
+      <div class="container">
+        <div class="hero-copy">
+          <h1>Comfort. Style. On time.</h1>
+          <p>Chauffeured transfers, executive travel and airport pick-ups across the city. Reliable — professional — polished.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#contact">Book a Ride</a>
+            <a class="btn btn-outline" href="#fleet">View Fleet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <p class="lead">Airport transfers • Corporate travel • Hourly chauffeurs • Events & weddings</p>
+        <div class="grid services-grid">
+          <article class="card">
+            <h3>Airport Transfers</h3>
+            <p>Door-to-door arrival and departure transfers with flight monitoring and meet-and-greet.</p>
+          </article>
+          <article class="card">
+            <h3>Corporate Travel</h3>
+            <p>Dedicated accounts, invoicing and priority bookings for business clients.</p>
+          </article>
+          <article class="card">
+            <h3>Hourly Hire</h3>
+            <p>Flexible hourly bookings for city tours, meetings or multi-stop journeys.</p>
+          </article>
+          <article class="card">
+            <h3>Events & Weddings</h3>
+            <p>Arrive in style — professional chauffeurs and branded signage available.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fleet" class="section fleet">
+      <div class="container">
+        <h2>Our Fleet</h2>
+        <p class="lead">From executive sedans to stretch limousines — we keep our vehicles pristine.</p>
+        <div class="grid fleet-grid">
+          <figure class="fleet-card">
+            <div class="fleet-img" style="background:linear-gradient(135deg,#e6eef8,#ffffff);">Sedan</div>
+            <figcaption>Executive Sedan — up to 3 passengers</figcaption>
+          </figure>
+          <figure class="fleet-card">
+            <div class="fleet-img" style="background:linear-gradient(135deg,#fbeee6,#ffffff);">SUV</div>
+            <figcaption>Premium SUV — up to 5 passengers</figcaption>
+          </figure>
+          <figure class="fleet-card">
+            <div class="fleet-img" style="background:linear-gradient(135deg,#e6f7ee,#ffffff);">Van</div>
+            <figcaption>Luxury Van — up to 8 passengers</figcaption>
+          </figure>
+          <figure class="fleet-card">
+            <div class="fleet-img" style="background:linear-gradient(135deg,#f0e6fb,#ffffff);">Limo</div>
+            <figcaption>Stretch Limo — up to 10 passengers</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="prices" class="section prices">
+      <div class="container">
+        <h2>Pricing</h2>
+        <p class="lead">Transparent fares with no hidden fees. Competitive hourly and transfer rates.</p>
+        <div class="pricing-grid grid">
+          <div class="price-card">
+            <h3>Airport Transfer</h3>
+            <div class="price">From <strong>$45</strong></div>
+            <p>Fixed rate for standard sedan.</p>
+          </div>
+          <div class="price-card">
+            <h3>Hourly Hire</h3>
+            <div class="price"><strong>$60</strong>/hr</div>
+            <p>Minimum 2 hours.</p>
+          </div>
+          <div class="price-card">
+            <h3>Event Package</h3>
+            <div class="price">Contact for quote</div>
+            <p>Custom packages available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2>Book a ride</h2>
+        <p class="lead">Quick booking — we’ll confirm within 30 minutes.</p>
+        <form class="contact-form" action="#" onsubmit="return false;">
+          <div class="form-grid">
+            <label><span>Pick-up</span><input type="text" name="pickup" placeholder="Pick-up address" required></label>
+            <label><span>Drop-off</span><input type="text" name="dropoff" placeholder="Drop-off address" required></label>
+            <label><span>Date & Time</span><input type="datetime-local" name="when" required></label>
+            <label>
+              <span>Vehicle</span>
+              <select name="vehicle" required>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Van</option>
+                <option>Limousine</option>
+              </select>
+            </label>
+            <label class="fullwidth"><span>Notes (optional)</span><textarea name="notes" rows="3"></textarea></label>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Request Quote</button>
+            <button class="btn btn-outline" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Noir Fleet — All rights reserved.</div>
+      <div class="social">
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="Twitter">TW</a>
+        <a href="#" aria-label="Instagram">IG</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+// small JS for nav toggle and year
+document.getElementById('year').textContent = new Date().getFullYear();
+document.querySelector('.nav-toggle').addEventListener('click', function(){
+  document.body.classList.toggle('nav-open');
+});
+</script>
+</body>
+</html>
