@@ -30,7 +30,7 @@
       </nav>
 
       <div class="header-cta">
-        <a href="tel:+91-7203070345" class="phone-btn">Call Us: +91-7203070345</a>
+        <a href="tel:+91-7203070345" class="phone-btn"> Call/Whatsapp: +91-7203070345</a>
         <button id="menuToggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -64,52 +64,45 @@
       </div>
     </section>
 
-    <!-- Our Fleet (swipable banners) -->
+    <!-- Our Fleet (swipable banners with autoplay) -->
     <section id="fleet" class="fleet-section">
       <div class="section-head">
         <h2>Our Fleet</h2>
         <p>From executive sedans to stretch limousines — our vehicles are maintained to the highest standard.</p>
       </div>
 
-      <div class="carousel" id="fleetCarousel">
+      <div class="carousel" id="fleetCarousel" aria-roledescription="carousel">
         <button class="carousel-btn prev" aria-label="Previous vehicle" id="prevFleet">&larr;</button>
 
-        <div class="carousel-track" id="carouselTrack" tabindex="0" aria-roledescription="carousel" role="region">
-          <!-- Slide: Sedan -->
-          <figure class="carousel-slide">
-            <img src="sedan.jpg" alt="Sedan" class="carousel-image">
-            <figcaption class="carousel-caption">
-              <div class="caption-title">Sedan</div>
-              <div class="caption-sub">Luxury executive sedans — perfect for airport transfers and business travel.</div>
-            </figcaption>
-          </figure>
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carouselTrack" tabindex="0" role="list">
+            <!-- Slide: Sedan -->
+            <figure class="carousel-slide" role="listitem">
+              <img src="sedan.jpg" alt="Sedan" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">Sedan</div>
+                <div class="caption-sub">Luxury executive sedans — perfect for airport transfers and business travel.</div>
+              </figcaption>
+            </figure>
 
-          <!-- Slide: SUV -->
-          <figure class="carousel-slide">
-            <img src="suv.jpg" alt="SUV" class="carousel-image">
-            <figcaption class="carousel-caption">
-              <div class="caption-title">SUV</div>
-              <div class="caption-sub">Spacious SUVs for family travel and group comfort with premium amenities.</div>
-            </figcaption>
-          </figure>
+            <!-- Slide: SUV -->
+            <figure class="carousel-slide" role="listitem">
+              <img src="suv.jpg" alt="SUV" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">SUV</div>
+                <div class="caption-sub">Premium SUVs with extra space and comfort — ideal for family travel or group transfers.</div>
+              </figcaption>
+            </figure>
 
-          <!-- Slide: Van -->
-          <figure class="carousel-slide">
-            <img src="van.jpg" alt="Van" class="carousel-image">
-            <figcaption class="carousel-caption">
-              <div class="caption-title">Van</div>
-              <div class="caption-sub">Large-capacity vans for group transfers, airport meet-and-greets, and events.</div>
-            </figcaption>
-          </figure>
-
-          <!-- Slide: Limousine -->
-          <figure class="carousel-slide">
-            <img src="limo.jpg" alt="Limousine" class="carousel-image">
-            <figcaption class="carousel-caption">
-              <div class="caption-title">Limousine</div>
-              <div class="caption-sub">Stretch limousines for weddings, VIP events and red-carpet arrivals.</div>
-            </figcaption>
-          </figure>
+            <!-- Slide: Executive Bus -->
+            <figure class="carousel-slide" role="listitem">
+              <img src="exebus.jpg" alt="Executive Bus" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">Executive Bus</div>
+                <div class="caption-sub">Spacious executive buses with luxury interiors — perfect for corporate shuttles and group events.</div>
+              </figcaption>
+            </figure>
+          </div>
         </div>
 
         <button class="carousel-btn next" aria-label="Next vehicle" id="nextFleet">&rarr;</button>
@@ -314,57 +307,115 @@
     // Set current year in footer
     document.getElementById('curYear').textContent = new Date().getFullYear();
 
-    // Fleet carousel logic (click + touch swipe + dots); captions are bottom bars now
+    /* ---------------- Fleet carousel with autoplay ---------------- */
     (function(){
       const track = document.getElementById('carouselTrack');
       const slides = Array.from(track.querySelectorAll('.carousel-slide'));
       const prevBtn = document.getElementById('prevFleet');
       const nextBtn = document.getElementById('nextFleet');
       const dotsWrap = document.getElementById('carouselDots');
-      let current = 0;
 
-      // create dots
+      let current = 0;
+      const slideCount = slides.length;
+      const AUTOPLAY_INTERVAL = 4000; // ms
+      const RESUME_DELAY = 3000; // ms after user interaction
+      let autoplayTimer = null;
+      let resumeTimer = null;
+      let isPaused = false;
+      let isDragging = false;
+      let startX = 0;
+
+      // Build dots
       slides.forEach((_, idx) => {
         const dot = document.createElement('button');
         dot.className = 'dot';
         dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
-        dot.addEventListener('click', () => goTo(idx));
+        dot.addEventListener('click', () => {
+          goTo(idx);
+          pauseAutoplayTemporary();
+        });
         dotsWrap.appendChild(dot);
       });
-
       const dots = Array.from(dotsWrap.children);
-      function updateDots(){ dots.forEach(d => d.classList.remove('active')); if (dots[current]) dots[current].classList.add('active'); }
+
+      function updateDots() {
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[current]) dots[current].classList.add('active');
+      }
 
       function setPosition(index, animate = true) {
-        const width = track.clientWidth;
-        const idx = (index + slides.length) % slides.length;
+        const width = track.parentElement.clientWidth; // viewport width
+        const idx = (index + slideCount) % slideCount;
         track.style.transition = animate ? 'transform .45s cubic-bezier(.2,.9,.2,1)' : 'none';
         track.style.transform = `translateX(${-idx * width}px)`;
         current = idx;
         updateDots();
       }
 
-      function goTo(index){ setPosition(index, true); }
+      function goTo(index) {
+        setPosition(index, true);
+      }
 
-      prevBtn.addEventListener('click', ()=> goTo(current - 1));
-      nextBtn.addEventListener('click', ()=> goTo(current + 1));
+      prevBtn.addEventListener('click', () => { goTo(current - 1); pauseAutoplayTemporary(); });
+      nextBtn.addEventListener('click', () => { goTo(current + 1); pauseAutoplayTemporary(); });
 
-      // Touch swipe
-      let isDragging = false; let startX = 0;
+      // Keyboard navigation
+      track.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { goTo(current - 1); pauseAutoplayTemporary(); }
+        if (e.key === 'ArrowRight') { goTo(current + 1); pauseAutoplayTemporary(); }
+      });
+
+      // Touch/Mouse drag
       function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
 
-      track.addEventListener('touchstart', (e)=>{ isDragging=true; startX=getX(e); track.style.transition='none'; }, {passive:true});
-      track.addEventListener('touchmove', (e)=>{ if(!isDragging) return; const dx = getX(e)-startX; track.style.transform = `translateX(${ -current * track.clientWidth + dx }px)`; }, {passive:true});
-      track.addEventListener('touchend', (e)=>{ if(!isDragging) return; isDragging=false; const dx = getX(e)-startX; const threshold = track.clientWidth * 0.16; if (dx > threshold) goTo(current - 1); else if (dx < -threshold) goTo(current + 1); else goTo(current); });
+      track.addEventListener('touchstart', (e) => { isDragging = true; startX = getX(e); track.style.transition = 'none'; pauseAutoplayTemporary(); }, {passive:true});
+      track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const dx = getX(e) - startX;
+        track.style.transform = `translateX(${ -current * track.parentElement.clientWidth + dx }px)`;
+      }, {passive:true});
+      track.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        const dx = getX(e) - startX;
+        const threshold = track.parentElement.clientWidth * 0.16;
+        if (dx > threshold) goTo(current - 1);
+        else if (dx < -threshold) goTo(current + 1);
+        else goTo(current);
+      });
 
-      // Mouse drag desktop
+      // Mouse drag (desktop)
       let mouseDown = false;
-      track.addEventListener('mousedown', (e)=>{ mouseDown=true; startX=getX(e); track.style.transition='none'; });
-      window.addEventListener('mousemove', (e)=>{ if(!mouseDown) return; const dx=getX(e)-startX; track.style.transform = `translateX(${ -current * track.clientWidth + dx }px)`; });
-      window.addEventListener('mouseup', (e)=>{ if(!mouseDown) return; mouseDown=false; const dx=getX(e)-startX; const threshold=track.clientWidth*0.16; if(dx>threshold) goTo(current-1); else if(dx<-threshold) goTo(current+1); else goTo(current); });
+      track.addEventListener('mousedown', (e) => { mouseDown = true; isDragging = true; startX = getX(e); track.style.transition='none'; pauseAutoplayTemporary(); });
+      window.addEventListener('mousemove', (e) => { if(!mouseDown) return; const dx = getX(e) - startX; track.style.transform = `translateX(${ -current * track.parentElement.clientWidth + dx }px)`; });
+      window.addEventListener('mouseup', (e) => { if(!mouseDown) return; mouseDown=false; isDragging=false; const dx = getX(e)-startX; const threshold = track.parentElement.clientWidth * 0.16; if(dx>threshold) goTo(current-1); else if(dx<-threshold) goTo(current+1); else goTo(current); });
 
+      // Pause/resume helpers
+      function startAutoplay(){
+        stopAutoplay();
+        autoplayTimer = setInterval(()=> { if(!isPaused && !isDragging) goTo(current + 1); }, AUTOPLAY_INTERVAL);
+      }
+      function stopAutoplay(){ if(autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; } }
+      function pauseAutoplayTemporary(){
+        isPaused = true;
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(()=> { isPaused = false; }, RESUME_DELAY);
+      }
+
+      // Pause on hover/focus
+      const carouselEl = document.getElementById('fleetCarousel');
+      carouselEl.addEventListener('mouseenter', ()=> { isPaused = true; });
+      carouselEl.addEventListener('mouseleave', ()=> { isPaused = false; });
+      carouselEl.addEventListener('focusin', ()=> { isPaused = true; });
+      carouselEl.addEventListener('focusout', ()=> { isPaused = false; });
+
+      // Ensure correct sizing on resize
       window.addEventListener('resize', ()=> setPosition(current, false));
+
+      // Initialize
       setPosition(0, false);
+      updateDots();
+      startAutoplay();
     })();
   </script>
 </body>
