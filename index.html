@@ -14,10 +14,6 @@
     <div class="header-inner">
       <div class="brand">
         <img src="logo.jpg" alt="NoirFleet Logo" class="logo" />
-        <div class="brand-text">
-          <span class="brand-name"></span>
-          <span class="brand-tag"></span>
-        </div>
       </div>
 
       <nav class="main-nav" id="mainNav">
@@ -30,7 +26,11 @@
       </nav>
 
       <div class="header-cta">
-        <a href="tel:+91-7203070345" class="phone-btn"> Call/Whatsapp: +91-7203070345</a>
+        <div class="contact-box">
+          <a href="tel:+91-7203070345" class="contact-item">📞 +91-7203070345</a>
+          <span class="divider">|</span>
+          <a href="mailto:reservations@noirfleet.com" class="contact-item">reservations@noirfleet.com</a>
+        </div>
         <button id="menuToggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -49,12 +49,12 @@
   </header>
 
   <main id="home">
-    <!-- Banner (kept as banner.png, no text overlay) -->
+    <!-- Banner -->
     <section class="banner-section">
       <img src="banner.png" alt="NoirFleet banner" class="banner-image">
     </section>
 
-    <!-- Tagline below the banner -->
+    <!-- Tagline -->
     <section class="tagline-section">
       <h1 class="tagline-title">Comfort. Style. Reliability.</h1>
       <p class="tagline-sub">Premium cars for airport transfers, corporate travel, hourly packages and events — served with impeccable care.</p>
@@ -64,7 +64,7 @@
       </div>
     </section>
 
-    <!-- Our Fleet (swipable banners with autoplay) -->
+    <!-- Fleet -->
     <section id="fleet" class="fleet-section">
       <div class="section-head">
         <h2>Our Fleet</h2>
@@ -76,7 +76,6 @@
 
         <div class="carousel-viewport">
           <div class="carousel-track" id="carouselTrack" tabindex="0" role="list">
-            <!-- Slide: Sedan -->
             <figure class="carousel-slide" role="listitem">
               <img src="sedan.jpg" alt="Sedan" class="carousel-image">
               <figcaption class="carousel-caption">
@@ -85,7 +84,6 @@
               </figcaption>
             </figure>
 
-            <!-- Slide: SUV -->
             <figure class="carousel-slide" role="listitem">
               <img src="suv.jpg" alt="SUV" class="carousel-image">
               <figcaption class="carousel-caption">
@@ -94,7 +92,6 @@
               </figcaption>
             </figure>
 
-            <!-- Slide: Executive Bus -->
             <figure class="carousel-slide" role="listitem">
               <img src="exebus.jpg" alt="Executive Bus" class="carousel-image">
               <figcaption class="carousel-caption">
@@ -106,12 +103,11 @@
         </div>
 
         <button class="carousel-btn next" aria-label="Next vehicle" id="nextFleet">&rarr;</button>
-
         <div class="carousel-dots" id="carouselDots" aria-hidden="false"></div>
       </div>
     </section>
 
-    <!-- Global Presence (placed above Pricing) -->
+    <!-- Global Presence -->
     <section id="global" class="global-section">
       <div class="section-head">
         <h2>Global Presence</h2>
@@ -124,7 +120,6 @@
           <div class="global-body">
             <h3>United States</h3>
             <p class="muted">New York — Times Square, JFK & LaGuardia transfers. Los Angeles — LAX, corporate accounts and event transport.</p>
-            <p class="optional-note">Add image: <code>usa.jpg</code></p>
           </div>
         </article>
 
@@ -133,16 +128,14 @@
           <div class="global-body">
             <h3>United Kingdom</h3>
             <p class="muted">London — Heathrow & City transfers, city tours, and executive meet-and-greets.</p>
-            <p class="optional-note">Add image: <code>uk.jpg</code></p>
           </div>
         </article>
 
         <article class="global-card">
           <img src="uae.jpg" alt="UAE" class="global-thumb">
           <div class="global-body">
-            <h3>United Arab Emirates</h3>
+            <h3>Dubai, UAE & GCC Countries</h3>
             <p class="muted">Dubai — Airport VIP services, cruise transfers, and city-to-desert corporate transfers.</p>
-            <p class="optional-note">Add image: <code>uae.jpg</code></p>
           </div>
         </article>
 
@@ -151,13 +144,29 @@
           <div class="global-body">
             <h3>India</h3>
             <p class="muted">Mumbai & Delhi — airport transfers, corporate accounts and bespoke city tours.</p>
-            <p class="optional-note">Add image: <code>india.jpg</code></p>
+          </div>
+        </article>
+
+        <article class="global-card">
+          <img src="canada.jpg" alt="Canada" class="global-thumb">
+          <div class="global-body">
+            <h3>Canada</h3>
+            <p class="muted">Toronto, Vancouver & Montreal — executive airport transfers, corporate charters and city tours across major Canadian hubs.</p>
+          </div>
+        </article>
+
+        <!-- 🆕 "and more..." card -->
+        <article class="global-card">
+          <img src="more.jpg" alt="More destinations" class="global-thumb">
+          <div class="global-body">
+            <h3>and more...</h3>
+            <p class="muted">Selected international hubs including France (Paris), Germany (Frankfurt & Munich), Japan (Tokyo), Australia (Sydney & Melbourne), Singapore, Brazil (São Paulo) and South Africa (Johannesburg) — bespoke transfers, executive accounts and event transport available on request.</p>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- Pricing (image cards, bigger images, more text) -->
+    <!-- Pricing -->
     <section id="pricing" class="pricing-section">
       <div class="section-head">
         <h2>Pricing</h2>
@@ -207,7 +216,7 @@
       </div>
     </section>
 
-    <!-- Services (expanded, each with short explanation) -->
+    <!-- Services -->
     <section id="services" class="services-section">
       <div class="section-head">
         <h2>Services</h2>
@@ -262,8 +271,13 @@
       <div class="section-head">
         <h2>Contact</h2>
         <p>Questions or Bookings / Quotes — reach out to our support team.</p>
+        <p class="muted">
+          Email: <a href="mailto:reservations@noirfleet.com" class="email-link">reservations@noirfleet.com</a>
+        </p>
       </div>
-      <form class="contact-form" action="#" method="post" aria-label="Contact form">
+
+      <form class="contact-form" action="https://formspree.io/f/mvgwbgpj" method="POST" aria-label="Contact form">
+
         <div class="form-row">
           <input type="text" name="name" placeholder="Your name" required>
           <input type="tel" name="phone" placeholder="Phone number" required>
@@ -271,6 +285,10 @@
         <div class="form-row">
           <input type="email" name="email" placeholder="Email">
           <input type="text" name="pickup" placeholder="Pickup location" required>
+        </div>
+        <div class="form-row">
+          <input type="text" name="dropoff" placeholder="Dropoff location" required>
+          <input type="number" name="passengers" min="1" max="50" placeholder="Number of passengers" required>
         </div>
         <textarea name="message" placeholder="Message / details" rows="4"></textarea>
         <div class="form-actions">
@@ -294,7 +312,6 @@
   </footer>
 
   <script>
-    // Header mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
     menuToggle.addEventListener('click', () => {
@@ -303,120 +320,141 @@
       mobileNav.setAttribute('aria-hidden', String(expanded));
       mobileNav.classList.toggle('open');
     });
-
-    // Set current year in footer
     document.getElementById('curYear').textContent = new Date().getFullYear();
-
-    /* ---------------- Fleet carousel with autoplay ---------------- */
-    (function(){
-      const track = document.getElementById('carouselTrack');
-      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
-      const prevBtn = document.getElementById('prevFleet');
-      const nextBtn = document.getElementById('nextFleet');
-      const dotsWrap = document.getElementById('carouselDots');
-
-      let current = 0;
-      const slideCount = slides.length;
-      const AUTOPLAY_INTERVAL = 4000; // ms
-      const RESUME_DELAY = 3000; // ms after user interaction
-      let autoplayTimer = null;
-      let resumeTimer = null;
-      let isPaused = false;
-      let isDragging = false;
-      let startX = 0;
-
-      // Build dots
-      slides.forEach((_, idx) => {
-        const dot = document.createElement('button');
-        dot.className = 'dot';
-        dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
-        dot.addEventListener('click', () => {
-          goTo(idx);
-          pauseAutoplayTemporary();
-        });
-        dotsWrap.appendChild(dot);
-      });
-      const dots = Array.from(dotsWrap.children);
-
-      function updateDots() {
-        dots.forEach(d => d.classList.remove('active'));
-        if (dots[current]) dots[current].classList.add('active');
-      }
-
-      function setPosition(index, animate = true) {
-        const width = track.parentElement.clientWidth; // viewport width
-        const idx = (index + slideCount) % slideCount;
-        track.style.transition = animate ? 'transform .45s cubic-bezier(.2,.9,.2,1)' : 'none';
-        track.style.transform = `translateX(${-idx * width}px)`;
-        current = idx;
-        updateDots();
-      }
-
-      function goTo(index) {
-        setPosition(index, true);
-      }
-
-      prevBtn.addEventListener('click', () => { goTo(current - 1); pauseAutoplayTemporary(); });
-      nextBtn.addEventListener('click', () => { goTo(current + 1); pauseAutoplayTemporary(); });
-
-      // Keyboard navigation
-      track.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') { goTo(current - 1); pauseAutoplayTemporary(); }
-        if (e.key === 'ArrowRight') { goTo(current + 1); pauseAutoplayTemporary(); }
-      });
-
-      // Touch/Mouse drag
-      function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
-
-      track.addEventListener('touchstart', (e) => { isDragging = true; startX = getX(e); track.style.transition = 'none'; pauseAutoplayTemporary(); }, {passive:true});
-      track.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const dx = getX(e) - startX;
-        track.style.transform = `translateX(${ -current * track.parentElement.clientWidth + dx }px)`;
-      }, {passive:true});
-      track.addEventListener('touchend', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        const dx = getX(e) - startX;
-        const threshold = track.parentElement.clientWidth * 0.16;
-        if (dx > threshold) goTo(current - 1);
-        else if (dx < -threshold) goTo(current + 1);
-        else goTo(current);
-      });
-
-      // Mouse drag (desktop)
-      let mouseDown = false;
-      track.addEventListener('mousedown', (e) => { mouseDown = true; isDragging = true; startX = getX(e); track.style.transition='none'; pauseAutoplayTemporary(); });
-      window.addEventListener('mousemove', (e) => { if(!mouseDown) return; const dx = getX(e) - startX; track.style.transform = `translateX(${ -current * track.parentElement.clientWidth + dx }px)`; });
-      window.addEventListener('mouseup', (e) => { if(!mouseDown) return; mouseDown=false; isDragging=false; const dx = getX(e)-startX; const threshold = track.parentElement.clientWidth * 0.16; if(dx>threshold) goTo(current-1); else if(dx<-threshold) goTo(current+1); else goTo(current); });
-
-      // Pause/resume helpers
-      function startAutoplay(){
-        stopAutoplay();
-        autoplayTimer = setInterval(()=> { if(!isPaused && !isDragging) goTo(current + 1); }, AUTOPLAY_INTERVAL);
-      }
-      function stopAutoplay(){ if(autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; } }
-      function pauseAutoplayTemporary(){
-        isPaused = true;
-        if (resumeTimer) clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(()=> { isPaused = false; }, RESUME_DELAY);
-      }
-
-      // Pause on hover/focus
-      const carouselEl = document.getElementById('fleetCarousel');
-      carouselEl.addEventListener('mouseenter', ()=> { isPaused = true; });
-      carouselEl.addEventListener('mouseleave', ()=> { isPaused = false; });
-      carouselEl.addEventListener('focusin', ()=> { isPaused = true; });
-      carouselEl.addEventListener('focusout', ()=> { isPaused = false; });
-
-      // Ensure correct sizing on resize
-      window.addEventListener('resize', ()=> setPosition(current, false));
-
-      // Initialize
-      setPosition(0, false);
-      updateDots();
-      startAutoplay();
-    })();
   </script>
 </body>
 </html>
+
+<script>
+/* Fleet carousel: autoplay + arrows + dots + swipe + drag */
+(function(){
+  const track = document.getElementById('carouselTrack');
+  if (!track) return; // no carousel present
+
+  const prevBtn = document.getElementById('prevFleet');
+  const nextBtn = document.getElementById('nextFleet');
+  const dotsWrap = document.getElementById('carouselDots');
+  const carouselEl = document.getElementById('fleetCarousel');
+
+  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+  const slideCount = slides.length;
+  if (slideCount === 0) return;
+
+  let current = 0;
+  const AUTOPLAY_INTERVAL = 4000; // ms
+  const RESUME_DELAY = 3000; // ms after interaction
+  let autoplayTimer = null;
+  let resumeTimer = null;
+  let isPaused = false;
+  let isDragging = false;
+  let startX = 0;
+  let mouseDown = false;
+
+  // build dots
+  dotsWrap.innerHTML = '';
+  slides.forEach((_, idx) => {
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.type = 'button';
+    d.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+    d.addEventListener('click', () => { goTo(idx); pauseAutoplayTemporary(); });
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function updateDots(){ dots.forEach(x => x.classList.remove('active')); if (dots[current]) dots[current].classList.add('active'); }
+
+  function viewportWidth(){ return track.parentElement ? track.parentElement.clientWidth : track.clientWidth; }
+
+  function setPosition(index, animate = true){
+    const w = viewportWidth();
+    const idx = ((index % slideCount) + slideCount) % slideCount;
+    track.style.transition = animate ? 'transform .45s cubic-bezier(.2,.9,.2,1)' : 'none';
+    track.style.transform = `translateX(${-idx * w}px)`;
+    current = idx;
+    updateDots();
+  }
+
+  function goTo(index){ setPosition(index, true); }
+
+  // arrow handlers
+  if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); pauseAutoplayTemporary(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); pauseAutoplayTemporary(); });
+
+  // keyboard
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { goTo(current - 1); pauseAutoplayTemporary(); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); pauseAutoplayTemporary(); }
+  });
+
+  // touch helpers
+  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
+
+  track.addEventListener('touchstart', (e) => {
+    isDragging = true; startX = getX(e); track.style.transition = 'none'; pauseAutoplayTemporary();
+  }, {passive:true});
+
+  track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const dx = getX(e) - startX;
+    track.style.transform = `translateX(${ -current * viewportWidth() + dx }px)`;
+  }, {passive:true});
+
+  track.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const dx = (e.changedTouches && e.changedTouches[0]) ? (e.changedTouches[0].clientX - startX) : 0;
+    const threshold = viewportWidth() * 0.16;
+    if (dx > threshold) goTo(current - 1);
+    else if (dx < -threshold) goTo(current + 1);
+    else goTo(current);
+  });
+
+  // mouse drag (desktop)
+  track.addEventListener('mousedown', (e) => {
+    mouseDown = true; isDragging = true; startX = getX(e); track.style.transition = 'none'; pauseAutoplayTemporary();
+    // prevent image dragging default
+    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!mouseDown) return;
+    const dx = getX(e) - startX;
+    track.style.transform = `translateX(${ -current * viewportWidth() + dx }px)`;
+  });
+  window.addEventListener('mouseup', (e) => {
+    if (!mouseDown) return;
+    mouseDown = false; isDragging = false;
+    const dx = getX(e) - startX;
+    const threshold = viewportWidth() * 0.16;
+    if (dx > threshold) goTo(current - 1);
+    else if (dx < -threshold) goTo(current + 1);
+    else goTo(current);
+  });
+
+  // autoplay control
+  function startAutoplay(){
+    stopAutoplay();
+    autoplayTimer = setInterval(() => { if(!isPaused && !isDragging) goTo(current + 1); }, AUTOPLAY_INTERVAL);
+  }
+  function stopAutoplay(){ if (autoplayTimer){ clearInterval(autoplayTimer); autoplayTimer = null; } }
+  function pauseAutoplayTemporary(){
+    isPaused = true;
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(()=> { isPaused = false; }, RESUME_DELAY);
+  }
+
+  // pause on hover/focus
+  carouselEl.addEventListener('mouseenter', () => { isPaused = true; });
+  carouselEl.addEventListener('mouseleave', () => { isPaused = false; });
+  carouselEl.addEventListener('focusin', () => { isPaused = true; });
+  carouselEl.addEventListener('focusout', () => { isPaused = false; });
+
+  // resize handling
+  window.addEventListener('resize', () => setPosition(current, false));
+
+  // init
+  setPosition(0, false);
+  updateDots();
+  startAutoplay();
+})();
+</script>
