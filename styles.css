@@ -338,6 +338,12 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
   font-size: 0.9rem;
   line-height: 1.4;
 }
+.tall-card {
+  height: 230px;
+}
+.small-text .muted {
+  font-size: 0.81rem;
+}
 .optional-note {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.12);

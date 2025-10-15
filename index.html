@@ -7,6 +7,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="noir_favicon.png">
 </head>
 <body>
   <!-- Sticky header -->
@@ -20,7 +21,6 @@
         <a href="#home">Home</a>
         <a href="#fleet">Our Fleet</a>
         <a href="#global">Global Presence</a>
-        <a href="#pricing">Pricing</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -147,7 +147,7 @@
           </div>
         </article>
 
-        <article class="global-card">
+        <article class="global-card tall-card">
           <img src="canada.jpg" alt="Canada" class="global-thumb">
           <div class="global-body">
             <h3>Canada</h3>
@@ -156,7 +156,7 @@
         </article>
 
         <!-- 🆕 "and more..." card -->
-        <article class="global-card">
+        <article class="global-card tall-card small-text">
           <img src="more.jpg" alt="More destinations" class="global-thumb">
           <div class="global-body">
             <h3>and more...</h3>
@@ -166,11 +166,56 @@
       </div>
     </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="pricing-section">
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services-section">
       <div class="section-head">
-        <h2>Pricing</h2>
-        <p>Choose a package that fits your travel needs — clear options with tailored service descriptions.</p>
+        <h2>Services</h2>
+        <p>Comprehensive chauffeur services tailored to every need.</p>
+      </div>
+
+      <div class="carousel" id="servicesCarousel" aria-roledescription="carousel">
+        <button class="carousel-btn prev" aria-label="Previous service" id="prevServices">&larr;</button>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="servicesTrack" tabindex="0" role="list">
+            <figure class="carousel-slide" role="listitem">
+              <img src="fbo1.jpg" alt="FBO Arrivals" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">FBO Arrivals</div>
+                <div class="caption-sub">Elite fleet. Exclusive service. Luxury on demand. Anytime. Anywhere..</div>
+              </figcaption>
+            </figure>
+
+            <figure class="carousel-slide" role="listitem">
+              <img src="wedding.jpg" alt="Weddings" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">Weddings</div>
+                <div class="caption-sub">Your grand entrance, exquisitely planned. Elegance for your unforgettable day.</div>
+              </figcaption>
+            </figure>
+
+            <figure class="carousel-slide" role="listitem">
+              <img src="event.jpg" alt="Event" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">Events</div>
+                <div class="caption-sub">The Grand Entrance is Always Yours.</div>
+              </figcaption>
+            </figure>
+
+            <figure class="carousel-slide" role="listitem">
+              <img src="red_carpet.jpg" alt="Service 4" class="carousel-image">
+              <figcaption class="carousel-caption">
+                <div class="caption-title">Red Carpet</div>
+                <div class="caption-sub">Arrive in understated elegance, where your presence is the main event.</div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" aria-label="Next service" id="nextServices">&rarr;</button>
+        <div class="carousel-dots" id="servicesDots" aria-hidden="false"></div>
       </div>
 
       <div class="pricing-grid">
@@ -214,15 +259,6 @@
           </div>
         </article>
       </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="services-section">
-      <div class="section-head">
-        <h2>Services</h2>
-        <p>Comprehensive chauffeur services tailored to every need.</p>
-      </div>
-
       <div class="services-grid">
         <div class="service-card">
           <h4>Airport Transfers</h4>
@@ -335,6 +371,138 @@
   const nextBtn = document.getElementById('nextFleet');
   const dotsWrap = document.getElementById('carouselDots');
   const carouselEl = document.getElementById('fleetCarousel');
+
+  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+  const slideCount = slides.length;
+  if (slideCount === 0) return;
+
+  let current = 0;
+  const AUTOPLAY_INTERVAL = 4000; // ms
+  const RESUME_DELAY = 3000; // ms after interaction
+  let autoplayTimer = null;
+  let resumeTimer = null;
+  let isPaused = false;
+  let isDragging = false;
+  let startX = 0;
+  let mouseDown = false;
+
+  // build dots
+  dotsWrap.innerHTML = '';
+  slides.forEach((_, idx) => {
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.type = 'button';
+    d.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+    d.addEventListener('click', () => { goTo(idx); pauseAutoplayTemporary(); });
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function updateDots(){ dots.forEach(x => x.classList.remove('active')); if (dots[current]) dots[current].classList.add('active'); }
+
+  function viewportWidth(){ return track.parentElement ? track.parentElement.clientWidth : track.clientWidth; }
+
+  function setPosition(index, animate = true){
+    const w = viewportWidth();
+    const idx = ((index % slideCount) + slideCount) % slideCount;
+    track.style.transition = animate ? 'transform .45s cubic-bezier(.2,.9,.2,1)' : 'none';
+    track.style.transform = `translateX(${-idx * w}px)`;
+    current = idx;
+    updateDots();
+  }
+
+  function goTo(index){ setPosition(index, true); }
+
+  // arrow handlers
+  if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); pauseAutoplayTemporary(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); pauseAutoplayTemporary(); });
+
+  // keyboard
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { goTo(current - 1); pauseAutoplayTemporary(); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); pauseAutoplayTemporary(); }
+  });
+
+  // touch helpers
+  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
+
+  track.addEventListener('touchstart', (e) => {
+    isDragging = true; startX = getX(e); track.style.transition = 'none'; pauseAutoplayTemporary();
+  }, {passive:true});
+
+  track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const dx = getX(e) - startX;
+    track.style.transform = `translateX(${ -current * viewportWidth() + dx }px)`;
+  }, {passive:true});
+
+  track.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const dx = (e.changedTouches && e.changedTouches[0]) ? (e.changedTouches[0].clientX - startX) : 0;
+    const threshold = viewportWidth() * 0.16;
+    if (dx > threshold) goTo(current - 1);
+    else if (dx < -threshold) goTo(current + 1);
+    else goTo(current);
+  });
+
+  // mouse drag (desktop)
+  track.addEventListener('mousedown', (e) => {
+    mouseDown = true; isDragging = true; startX = getX(e); track.style.transition = 'none'; pauseAutoplayTemporary();
+    // prevent image dragging default
+    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!mouseDown) return;
+    const dx = getX(e) - startX;
+    track.style.transform = `translateX(${ -current * viewportWidth() + dx }px)`;
+  });
+  window.addEventListener('mouseup', (e) => {
+    if (!mouseDown) return;
+    mouseDown = false; isDragging = false;
+    const dx = getX(e) - startX;
+    const threshold = viewportWidth() * 0.16;
+    if (dx > threshold) goTo(current - 1);
+    else if (dx < -threshold) goTo(current + 1);
+    else goTo(current);
+  });
+
+  // autoplay control
+  function startAutoplay(){
+    stopAutoplay();
+    autoplayTimer = setInterval(() => { if(!isPaused && !isDragging) goTo(current + 1); }, AUTOPLAY_INTERVAL);
+  }
+  function stopAutoplay(){ if (autoplayTimer){ clearInterval(autoplayTimer); autoplayTimer = null; } }
+  function pauseAutoplayTemporary(){
+    isPaused = true;
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(()=> { isPaused = false; }, RESUME_DELAY);
+  }
+
+  // pause on hover/focus
+  carouselEl.addEventListener('mouseenter', () => { isPaused = true; });
+  carouselEl.addEventListener('mouseleave', () => { isPaused = false; });
+  carouselEl.addEventListener('focusin', () => { isPaused = true; });
+  carouselEl.addEventListener('focusout', () => { isPaused = false; });
+
+  // resize handling
+  window.addEventListener('resize', () => setPosition(current, false));
+
+  // init
+  setPosition(0, false);
+  updateDots();
+  startAutoplay();
+})();
+
+/* Services carousel: autoplay + arrows + dots + swipe + drag */
+(function(){
+  const track = document.getElementById('servicesTrack');
+  if (!track) return; // no carousel present
+
+  const prevBtn = document.getElementById('prevServices');
+  const nextBtn = document.getElementById('nextServices');
+  const dotsWrap = document.getElementById('servicesDots');
+  const carouselEl = document.getElementById('servicesCarousel');
 
   const slides = Array.from(track.querySelectorAll('.carousel-slide'));
   const slideCount = slides.length;
