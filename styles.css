@@ -43,9 +43,7 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 .header-inner{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px 20px;
+  padding: 12px 100px;
   display: flex;
   gap: 12px;
   align-items: center;
@@ -131,9 +129,7 @@ body {
 /* Mobile nav panel */
 .mobile-nav{
   display:none;
-  max-width:1200px;
-  margin:0 auto;
-  padding:8px 20px;
+  padding:8px 100px;
   border-top:1px solid rgba(255,255,255,0.02);
 }
 .mobile-nav.open{
@@ -152,7 +148,7 @@ body {
 }
 
 /* Ensure content does not hide behind header */
-main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; padding-right:20px; }
+main { padding-top: 110px; padding-left:100px; padding-right:100px; }
 
 /* ---------- BANNER & TAGLINE ---------- */
 .banner-section { margin: 18px 0 6px; }
@@ -174,7 +170,7 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
 .section-head p { color:var(--muted); margin:6px 0 0; }
 
 /* ---------- FLEET CAROUSEL ---------- */
-.fleet-section { margin: 12px 0 40px; }
+.fleet-section { margin: 12px 0 60px; }
 
 .carousel {
   position: relative;
@@ -310,7 +306,7 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
   overflow: hidden;
   box-shadow: var(--shadow);
   border: 1px solid rgba(255, 255, 255, 0.03);
-  height: 180px;
+  height: 220px;
 }
 .global-thumb {
   width: 50%;
@@ -366,6 +362,7 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
 .pricing-body .muted{ color:var(--muted); margin-top:8px; line-height:1.4; }
 
 /* ---------- SERVICES ---------- */
+.services-section .carousel { margin-bottom: 40px; }
 .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:12px; }
 .service-card {
   background:linear-gradient(180deg,#0c0c0d,#0f0f10); padding:18px; border-radius:12px;
@@ -387,8 +384,8 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
 .form-actions { display:flex; gap:10px; margin-top:8px; }
 
 /* ---------- FOOTER ---------- */
-.site-footer { padding:24px 20px; background:transparent; }
-.footer-inner { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:12px; align-items:center; }
+.site-footer { padding:24px 100px; background:transparent; }
+.footer-inner { display:flex; justify-content:space-between; gap:12px; align-items:center; }
 .footer-left strong{ font-size:1.05rem; color:var(--accent); }
 .muted{ color:var(--muted); }
 
@@ -399,7 +396,10 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
   .services-grid { grid-template-columns: repeat(2,1fr); }
   .main-nav { display:none; }
   .hamburger { display:flex; }
-  main { padding-top:110px; }
+  main { padding-top:110px; padding-left:20px; padding-right:20px; }
+  .header-inner { padding: 12px 20px; }
+  .mobile-nav { padding: 8px 20px; }
+  .site-footer { padding: 24px 20px; }
   .carousel-image { height:260px; }
 }
 
@@ -410,7 +410,10 @@ main { padding-top: 110px; max-width:1200px; margin: 0 auto; padding-left:20px; 
   .services-grid { grid-template-columns:1fr; }
   .pricing-card { flex-direction: column; }
   .pricing-media, .pricing-image { width:100%; height:200px; }
-  main { padding-top:96px; }
+  main { padding-top:96px; padding-left:15px; padding-right:15px; }
+  .header-inner { padding: 12px 15px; }
+  .mobile-nav { padding: 8px 15px; }
+  .site-footer { padding: 24px 15px; }
   .logo { height:48px; width:auto; }
 }
 
